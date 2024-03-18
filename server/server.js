@@ -9,6 +9,10 @@ app.use(express.json())
 
 app.use('/api/v1', mainRouter);
 
+app.get('/', (req, res) => {
+    return res.status(200).json({ success: true, message: 'default route working fine!' });
+})
+
 app.listen(PORT, () => {
     console.log('server is listening on port ', PORT);
 })
