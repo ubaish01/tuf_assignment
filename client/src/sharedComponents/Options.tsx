@@ -25,10 +25,10 @@ const Options = ({ value, updateValue, options }: optionsProps) => {
                 <div>{value.label}</div>
                 <IoIosArrowDown size={22} className={`text-amber-500 transition-all duration-500 ${isOpen && '-rotate-180'}`} />
             </div>
-            <div className={`absolute  bg-amber-100 text-amber-500 w-full top-8 left-0 overflow-hidden z-10 ${!isOpen ? 'h-0 p-0' : 'py-0'} rounded-md `} >
+            <div className={`absolute  bg-black text-amber-500 w-full top-8 left-0 overflow-hidden z-10 ${!isOpen ? 'h-0 p-0' : 'py-0'} rounded-md `} >
                 {
                     options.map((item: any, index: number) => (
-                        <div key={index} className={`p-2 text-base cursor-pointer transition-all duration-300 ${value === item && 'bg-amber-500 text-white font-semibold'} hover:bg-amber-500 hover:text-white`} onClick={() => { handleChange(item) }} >{item.label}</div>
+                        <div key={index} className={`p-2 text-base cursor-pointer transition-all duration-300 ${value === item && 'bg-amber-600 text-white font-semibold'} hover:bg-amber-500 hover:text-white`} onClick={() => { handleChange(item) }} >{item.label}</div>
                     ))
                 }
             </div>

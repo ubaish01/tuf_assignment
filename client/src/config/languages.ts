@@ -6,7 +6,7 @@ export const LANGUAGES = [
     },
     {
         label: 'C++',
-        value: 'cpp'
+        value: 'c++'
     },
     {
         label: 'Python',
