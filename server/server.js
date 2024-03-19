@@ -18,7 +18,6 @@ const corsConfig = {
 }
 
 app.use(cors(corsConfig));
-app.options("", cors(corsConfig));
 app.use('/api/v1', mainRouter);
 
 app.get('/', (req, res) => {
