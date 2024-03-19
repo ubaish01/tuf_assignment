@@ -7,4 +7,6 @@ const connection = mysql.createPool({
     database: process.env.DATABASE_NAME,
 });
 
-module.exports = connection
+const alterCommandValue = 5;
+
+module.exports = { connection, alterCommandValue }

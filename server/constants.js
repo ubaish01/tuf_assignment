@@ -4,7 +4,7 @@ const constants = {
         'javascript': 63,
         'java': 62,
         'c++': 54
-    }
+    },
 }
 
 module.exports = constants

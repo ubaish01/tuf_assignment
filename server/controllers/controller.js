@@ -1,7 +1,7 @@
 const { errorHandler } = require("../error/error");
-const connection = require('../connection/connection');
 const { inputValidator } = require("../validators/inputValidator");
 const { ExecuteCode, getExecutionResult } = require("../Judge/Judge");
+const { connection } = require("../connection");
 
 const controller = {
 
@@ -26,6 +26,7 @@ const controller = {
         VALUES (?, ?, ?, ?, ? )`;
 
         // execution of query
+        
         await connection.promise().query(query, [username, language, stdin, code, output.stdout]);
 
         // returning response
