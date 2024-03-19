@@ -1,7 +1,7 @@
-const { errorHandler } = require("../error/error");
-const { connection } = require("../connection");
-const { inputValidator } = require("../inputValidator");
-const { ExecuteCode } = require("../Judge/Judge");
+const { connection } = require("../connection.js");
+const { errorHandler } = require("../error/error.js");
+const { inputValidator } = require("../inputValidator.js");
+const { ExecuteCode } = require("../Judge/Judge.js");
 
 const controller = {
 
