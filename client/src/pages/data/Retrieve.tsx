@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-// import { data } from '../../config/dummyData'
 import { Link } from 'react-router-dom'
 import { REQUEST } from '../../config/URL';
 import { getRequest } from '../../services/requests';
+import { format } from 'timeago.js';
 
 interface datatype {
     id: number,
@@ -13,15 +13,18 @@ interface datatype {
     created_at: any
 }
 
+const limit = 10;
+
 const Retrieve = () => {
     const [data, setData] = useState<datatype[]>([]);
+    const [dataCount, setDataCount] = useState(0);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
 
     const fetchData = async (pageNo: number) => {
         try {
             setLoading(true);
-            const url = `${REQUEST.DATA}?page=${pageNo}&limit=2`
+            const url = `${REQUEST.DATA}?page=${pageNo}&limit=${limit}`
             const res = await getRequest(url);
             const data = res.data.data;
             if (data.length === 0) {
@@ -30,6 +33,7 @@ const Retrieve = () => {
                 return
             }
             setData(data)
+            setDataCount(res.data.count);
             setLoading(false);
 
         } catch (error: any) {
@@ -51,6 +55,14 @@ const Retrieve = () => {
         if (page == 1) return;
         await fetchData(page - 1)
         setPage(prev => prev - 1);
+    }
+
+    const getSubmissionTime = (date: any) => {
+        const five_hours = 5.5 * 60 * 60 * 1000;
+        const providedDate = new Date(date);
+        const providedTimestamp = providedDate.getTime();
+        const ist_time = providedTimestamp + five_hours;
+        return format(ist_time);
     }
 
     return (
@@ -99,11 +111,11 @@ const Retrieve = () => {
                                         {item.stdin}
                                     </td>
                                     <td className="px-6 py-4 max-w-48">
-                                        {item.code.substring(0, 100)}... <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/code/${item.id}`}>more</Link>
+                                        {item.code.substring(0, 100)}{item.code.length > 100 && <>... <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/code/${item.id}`}>more</Link></>}
                                     </td>
                                     <td className="px-6 py-4">
                                         {/* <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> */}
-                                        {item.created_at}
+                                        {getSubmissionTime(item.created_at)}
                                     </td>
                                 </tr>
 
@@ -118,8 +130,8 @@ const Retrieve = () => {
 
             </div>
             <div className='flex gap-2 items-center justify-center py-4' >
-                <button className='px-8 py-2 rounded-md bg-gray-700 hover:bg-gray-600' onClick={prevPage} >Prev</button>
-                <button className='px-8 py-2 rounded-md bg-amber-500 hover:bg-amber-600' onClick={nextPage} >Next</button>
+                <button disabled={page == 1} className={`px-8 py-2 rounded-md  ${(page == 1) ? 'cursor-not-allowed bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'} `} onClick={prevPage} >Prev</button>
+                <button disabled={(page * limit >= dataCount)} className={`px-8 py-2 rounded-md  ${(page * limit >= dataCount) ? 'cursor-not-allowed bg-gray-400' : 'bg-amber-500 hover:bg-amber-600'} `} onClick={nextPage} >Next</button>
             </div>
 
         </div>

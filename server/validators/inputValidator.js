@@ -9,7 +9,7 @@ const inputValidator = (username, language, stdin, code) => {
     const isLanguageValid = validLanguages.includes(language.toLowerCase());
     if (!isLanguageValid) return {
         valid: false,
-        message: `only ${validLanguages.join(' ')} are allowed!`
+        message: `only ${validLanguages.join(', ')} are allowed!`
     }
 
     return {

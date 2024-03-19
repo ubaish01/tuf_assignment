@@ -4,7 +4,7 @@ import Options from "../../sharedComponents/Options";
 import toast from "react-hot-toast";
 import { postRequest } from "../../services/requests";
 import { REQUEST } from "../../config/URL";
-import { DEFAULT_CODE_EDITOR_VALUE_PYTHON } from "../../config/constants";
+import { DEFAULT_CODE_EDITOR_VALUE, DEFAULT_CODE_EDITOR_VALUE_PYTHON } from "../../config/constants";
 import { useState } from "react";
 
 const Upload = () => {
@@ -19,16 +19,16 @@ const Upload = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const filterCode = code.split(language.value == 'python' ? DEFAULT_CODE_EDITOR_VALUE_PYTHON : DEFAULT_CODE_EDITOR_VALUE_PYTHON)[1];
+            const filterCode = code.split(language.value == 'python' ? DEFAULT_CODE_EDITOR_VALUE_PYTHON : DEFAULT_CODE_EDITOR_VALUE)[1];
             const postData = {
                 username,
                 stdin,
-                language: language.value,
+                language: language.value === 'cpp' ? 'c++' : language.value,
                 code: filterCode
             };
+
             const res = await postRequest(REQUEST.DATA, postData);
             const data = res.data;
-            console.log(data);
 
             if (data.success) {
                 toast.success(data.message);

@@ -37,14 +37,32 @@ const controller = {
 
         // sql query to get data from the table
         const query = {
-            sql: `SELECT * FROM data ORDER BY id LIMIT ?, ?`,
+            sql: `SELECT * FROM data ORDER BY created_at DESC LIMIT ?, ?`,
             values: [offset, limit]
         };
 
         const data = await connection.promise().query(query);
 
+        const count = await connection.promise().query('SELECT COUNT(*) AS row_count FROM data;');
+
         // Returning data to the frontend application
-        return res.status(200).json({ success: true, data: data[0] })
+        return res.status(200).json({ success: true, count: count[0][0]['row_count'], data: data[0] })
+    },
+
+    getCode: async (req, res) => {
+        const id = JSON.parse(req.params.id);
+
+        const query = {
+            sql: `SELECT * FROM data WHERE id = ?`,
+            values: [id]
+        };
+
+        const data = await connection.promise().query(query);
+
+        return res.status(200).json({
+            success: true,
+            data: data[0][0]
+        });
     }
 
 }
