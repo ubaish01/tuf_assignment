@@ -42,7 +42,7 @@ const Code = () => {
             ?
             <div>Loading...</div>
             :
-            <SyntaxHighlighter language="javascript" style={vs2015}>
+            <SyntaxHighlighter className='text-left'  language="javascript" style={vs2015}>
               {code}
             </SyntaxHighlighter>
         }
