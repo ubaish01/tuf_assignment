@@ -4,7 +4,6 @@ import Options from "../../sharedComponents/Options";
 import toast from "react-hot-toast";
 import { postRequest } from "../../services/requests";
 import { REQUEST } from "../../config/URL";
-import { DEFAULT_CODE_EDITOR_VALUE, DEFAULT_CODE_EDITOR_VALUE_PYTHON } from "../../config/constants";
 import { useEffect, useState } from "react";
 import { validate } from "../../helper";
 
