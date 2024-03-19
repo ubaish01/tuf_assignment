@@ -9,7 +9,7 @@ const mainRouter = require('./routes/main')
 app.use(express.json())
 app.use(
     cors({
-        origin: ['http://localhost:5173'],
+        origin: [process.env.FRONTEND_URL],
         method: 'GET,POST,DELETE,PUT',
         credentials: true,
     })
