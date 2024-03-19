@@ -1,5 +1,5 @@
-const { insertData, getData, getCode } = require('../controllers/controller.js');
-const { asyncError } = require('../error/error.js');
+const { insertData, getData, getCode } = require('../controllers/controller');
+const { asyncError } = require('../error/error');
 
 const router = require('express').Router();
 
