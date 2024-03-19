@@ -10,14 +10,15 @@ const mainRouter = require('./routes/main')
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
-app.use(
-    cors({
-        origin: [process.env.FRONTEND_URL],
-        method: 'GET,POST,DELETE,PUT',
-        credentials: true,
-    })
-);
 
+const corsConfig = {
+    origin: [process.env.FRONTEND_URL],
+    method: 'GET,POST,DELETE,PUT',
+    credentials: true,
+}
+
+app.use(cors(corsConfig));
+app.options("", cors(corsConfig));
 app.use('/api/v1', mainRouter);
 
 app.get('/', (req, res) => {
