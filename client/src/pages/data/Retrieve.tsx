@@ -10,7 +10,8 @@ interface datatype {
     language: string,
     stdin: string,
     code: string,
-    created_at: any
+    created_at: any,
+    stdout: string,
 }
 
 const limit = 10;
@@ -81,6 +82,9 @@ const Retrieve = () => {
                                 code
                             </th>
                             <th scope="col" className="px-6 py-3 ">
+                                stdout
+                            </th>
+                            <th scope="col" className="px-6 py-3 ">
                                 submit at
                             </th>
                         </tr>
@@ -104,6 +108,10 @@ const Retrieve = () => {
                                     </td>
                                     <td className="px-6 py-4 max-w-48">
                                         {item.code.substring(0, 100)}{item.code.length > 100 && <>... <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/code/${item.id}`}>more</Link></>}
+                                    </td>
+
+                                    <td className="px-6 py-4">
+                                        {item?.stdout}
                                     </td>
                                     <td className="px-6 py-4">
                                         {/* <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> */}
