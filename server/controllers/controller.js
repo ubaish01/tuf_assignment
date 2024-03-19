@@ -1,7 +1,15 @@
-const { connection } = require("../connection/connection");
+const mysql = require('mysql2');
+
 const { errorHandler } = require("../error/error");
 const { inputValidator } = require("../inputValidator");
 const { ExecuteCode } = require("../Judge/Judge");
+
+const connection = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_USER_PASSWORD,
+    database: process.env.DATABASE_NAME,
+});
 
 const controller = {
 
