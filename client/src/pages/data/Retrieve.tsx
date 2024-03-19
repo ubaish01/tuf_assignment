@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 // import { data } from '../../config/dummyData'
 import { Link } from 'react-router-dom'
 import { REQUEST } from '../../config/URL';
