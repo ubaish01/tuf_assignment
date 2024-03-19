@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { BACKEND_URL } from '../config/URL';
 
 
 const AxiosInstance = axios.create({
