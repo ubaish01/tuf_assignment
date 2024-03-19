@@ -1,4 +1,4 @@
-const { connection } = require("../connection");
+const { connection } = require("../connection/connection");
 const { errorHandler } = require("../error/error");
 const { inputValidator } = require("../inputValidator");
 const { ExecuteCode } = require("../Judge/Judge");
