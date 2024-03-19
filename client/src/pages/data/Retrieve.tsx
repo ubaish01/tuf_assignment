@@ -57,14 +57,6 @@ const Retrieve = () => {
         setPage(prev => prev - 1);
     }
 
-    const getSubmissionTime = (date: any) => {
-        const five_hours = 5.5 * 60 * 60 * 1000;
-        const providedDate = new Date(date);
-        const providedTimestamp = providedDate.getTime();
-        const ist_time = providedTimestamp + five_hours;
-        return format(ist_time);
-    }
-
     return (
         <div className='w-full pt-8' >
 
@@ -115,7 +107,7 @@ const Retrieve = () => {
                                     </td>
                                     <td className="px-6 py-4">
                                         {/* <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> */}
-                                        {getSubmissionTime(item.created_at)}
+                                        {format(item.created_at)}
                                     </td>
                                 </tr>
 

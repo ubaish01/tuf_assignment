@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 
 const Code = () => {
   const [code, setCode] = useState('');
+  const [language, setLanguage] = useState('python')
   const [loading, setLoading] = useState(false);
   const params = useParams();
 
@@ -18,7 +19,7 @@ const Code = () => {
       const res = await getRequest(REQUEST.DATA + '/' + params.id);
       const data = res.data.data;
       console.log(data.code);
-
+      setLanguage(data.language);
       setCode(data.code);
       setLoading(false);
     } catch (error) {
@@ -42,7 +43,7 @@ const Code = () => {
             ?
             <div>Loading...</div>
             :
-            <SyntaxHighlighter className='text-left'  language="javascript" style={vs2015}>
+            <SyntaxHighlighter className='text-left' language={language} style={vs2015}>
               {code}
             </SyntaxHighlighter>
         }
